@@ -26,8 +26,10 @@ public class ExamDAO {
 			PreparedStatement pst = con.prepareStatement(sql);
 			System.out.println(pst);
 	
-			 pst.setString(1, c.getId()); System.out.println(c.getId());
-			 System.out.println(c.getPassword()); pst.setString(2, c.getPassword());
+			 pst.setString(1, c.getId()); 
+			 System.out.println(c.getId());
+			 System.out.println(c.getPassword()); 
+			 pst.setString(2, c.getPassword());
 			 
 			ResultSet rs = pst.executeQuery();
 			if(rs.next()) 
@@ -56,7 +58,9 @@ public class ExamDAO {
 			PreparedStatement pst = con.prepareStatement(sql);
 			System.out.println(pst);
 			
-			 pst.setString(1, a.getId());  
+			 pst.setString(1, a.getId());
+			 System.out.println(a.getId());
+			 System.out.println(a.getPassword()); 
 			 pst.setString(2, a.getPassword());
 			 
 			ResultSet rs = pst.executeQuery();

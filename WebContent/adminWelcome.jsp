@@ -42,6 +42,12 @@
                             <span class="hidden-sm hidden-xs">&nbsp;&nbsp; Instruction</span>
                         </a>
                     </li>
+                    <li class="link">
+                        <a href="./addGrade.jsp">
+                            <span><i class="fas fa-chalkboard-teacher"></i> </span>
+                            <span class="hidden-sm hidden-xs">&nbsp;&nbsp; Add Garde</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
             <!-- Side menu end-->
@@ -110,7 +116,7 @@
 									rsmd = rs.getMetaData();
 									out.print("<br><table class='table table-striped'>");
 									out.print("<thead><tr>");
-									for (int j = 2; j <= rsmd.getColumnCount()-1; j++) 
+									for (int j = 3; j <= rsmd.getColumnCount()-1; j++) 
 									{
 										out.print("<th>"+rsmd.getColumnName(j)+"</th>");
 									}
@@ -122,7 +128,7 @@
 									{
 										
 										out.print("<tr>");
-										for (int j = 2; j <= rsmd.getColumnCount()-1; j++) 
+										for (int j = 3; j <= rsmd.getColumnCount()-1; j++) 
 										{
 											out.print("<td>"+rs.getString(j)+"</td>");
 										}

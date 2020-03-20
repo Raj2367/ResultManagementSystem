@@ -45,7 +45,12 @@
                             <span class="hidden-sm hidden-xs">&nbsp;&nbsp; Instruction</span>
                         </a>
                     </li>
-                    
+                    <li class="link">
+                        <a href="./addGrade.jsp">
+                            <span><i class="fas fa-chalkboard-teacher"></i> </span>
+                            <span class="hidden-sm hidden-xs">&nbsp;&nbsp; Add Garde</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
             <!-- Side menu end-->
