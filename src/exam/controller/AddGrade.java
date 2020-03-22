@@ -29,9 +29,11 @@ public class AddGrade extends HttpServlet {
 		
 		c.setStream(request.getParameter("stream"));
 		c.setSemester(request.getParameter("sem"));
-		c.setSubjects(request.getParameter("subject"));
-		c.setCredits(request.getParameter("grade"));
 		
+		
+//		c.setSubjects(request.getParameter("subject"));
+//		c.setCredits(request.getParameter("grade"));
+//		
 //		ResultSet status = ExamDAO.showResult(c);
 //		if (status!=null) 
 //		{

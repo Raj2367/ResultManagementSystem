@@ -73,51 +73,138 @@
                 </header>
                 <!-- header close -->
                 <br>
-                <h1 class="text-center">Add Grade</h1>
-                	<form action="exam.controller.AddGrade" method="post">
-		                Enter the Student's Regd. no : <input type="text" name="regd"><br><br>
-		                Enter the Stream : <input type="text" name="stream"><br><br>
-						Enter the Semester : <input type="text" name="sem"><br><br>
-		                Enter the Subject : <input type="text" name="subject"><br><br>
-		                Enter the Grade : <input type="text" name="grade"><br><br>
-		                <input class='btn btn-warning' type="submit" value="Add Grade">
-		            </form>
-            </div>    
-            <!-- main content area end -->
-            <div>
-            	<%
-            		Connection con = null;
-            		ResultSet resultset = null;
-            		try{
-
-    	            	Class.forName("oracle.jdbc.OracleDriver");
-    	    			con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","lit");
-    	    			String sql ="select * from subjectList";
-                	
-            		}
-	            	catch(Exception e)
-	            	{
-	            			System.out.println("bhul heuchi kn gote!!!");
-	            	}
-	            	Statement statement = con.createStatement() ;
-	
-	                resultset =statement.executeQuery("select * from subjectList") ;
-            	%>
-            	<center>
-				    <h1> Drop down box or select element</h1>
-				        <select>
-				        <%  while(resultset.next()){ %>
-				            <option><%= resultset.getString(2)%></option>
-				        <% } %>
-				        </select>
-				</center>
+                <h1 class="text-center">Mark Sheet</h1>
+				
+                <div class="student-list text-center">
+	             <form action="exam.controller.ShowResult3" method="post">   
+	                Enter the Student's Regd. no : <input type="text" name="regd"><br><br>
+	                Enter the Semester : <input type="text" name="sem"><br><br>
+	                <input class='btn btn-warning' type="submit" value="Show Result">
+	                <br>
+	             </form>
+                    <%
+                    	if(request.getParameter("msg1") != null)
+                    	{
+                    		ResultSet rs=null;
+                    		ResultSetMetaData rsmd =null;
+                    		try 
+                    		{
+                    			Connection conn = Provider.getOracleConnection();
+                    			String regd=(String) session.getAttribute("regd");
+                    			String sem= (String)session.getAttribute("sem");
+                    			String sql = "select name,regd_no,subcode,subject,credits,grade,sgpa_2nd from gradesheet where regd_no = '"+regd+"' and sem = '"+sem+"'";
+                    			Statement st = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+                    			rs = st.executeQuery(sql);
+                    		}
+                    		catch (Exception e) 
+                    		{
+                    			e.printStackTrace();
+                    		}
+                    		
+                    		if(rs.next()) 
+                    		{
+                    			out.print("<br><br>Name : <b>"+rs.getString(1)+"</b><br><br>");
+                    			GradeSheet c = new GradeSheet();
+                    			c.setName(rs.getString(1));
+                    			session.setAttribute("name", rs.getString(1));
+                    			out.print("Regd No : <b>"+rs.getString(2)+"</b>");
+                    			c.setSgpa(rs.getString(7));
+								session.setAttribute("sgpa", rs.getString(7));
+                    		}
+                    		rs.previous();
+                    		
+							if (rs != null) 
+							{
+								try {
+									rsmd = rs.getMetaData();
+									out.print("<br><table class='table table-striped'>");
+									out.print("<thead><tr>");
+									for (int j = 3; j <= rsmd.getColumnCount()-1; j++) 
+									{
+										out.print("<th>"+rsmd.getColumnName(j)+"</th>");
+									}
+									out.print("</tr></thead><tbody>");
+									
+									
+							
+									while (rs.next()) 
+									{
+										
+										out.print("<tr>");
+										for (int j = 3; j <= rsmd.getColumnCount()-1; j++) 
+										{
+											out.print("<td>"+rs.getString(j)+"</td>");
+										}
+										out.print("</tr>");
+							
+									}
+									out.print("</tbody></table>");
+								} 
+								catch (SQLException e) 
+								{
+									out.print("<br>error in ShowComplain rs.next()");
+									e.printStackTrace();
+								}
+							}
+							else 
+							{
+								out.print("error...");
+							}
+							
+                    	}
+					%>
+					<div>
+						<form action="exam.controller.ShowResult2" method="post">   
+			                Enter the Subject Code: <input type="text" name="code"><br><br>
+			                Enter the Subject Name : <input type="text" name="sname"><br><br>
+			                Enter the Total Credit : <input type="text" name="credit"><br><br>
+			                Enter the Grade : <input type="text" name="grade"><br><br>
+			                <input class='btn btn-warning' type="submit" value="Add Result"><br>
+	             		</form>
+					</div>
+					<%
+						if(request.getParameter("msg1") != null && request.getParameter("msg2")!=null)
+						{
+							out.println("<h1>result added</h1><br><br");
+						}
+					%>
+                </div>    
             </div>
-         </div>
+            <!-- main content area end -->
+        </div>
     </div>
 
     
     <jsp:include page="footer.jsp"></jsp:include>
 
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    
+    <script>
+    	function updateId(id) { 		
+    		document.getElementById("stdid").value = id;
+    	}
+    	
+    	function deleteId(id) {
+    		document.getElementById("stdidd").value = id;
+    	}   
+    	function printDiv(divName){
+			var printContents = document.getElementById(divName).innerHTML;
+			var originalContents = document.body.innerHTML;
+			document.body.innerHTML = printContents;
+			window.print();
+			document.body.innerHTML = originalContents;
+		}
+    </script>
 </body>
 
 </html>

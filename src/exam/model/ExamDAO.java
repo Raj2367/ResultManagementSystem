@@ -6,6 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import exam.db.Student;
 import exam.db.Admin;
 import exam.db.GradeSheet;
@@ -270,6 +273,37 @@ public class ExamDAO {
 		return rs;
 
 	
+	}
+
+	public static int insertResult(GradeSheet c) 
+	{
+		HttpServletRequest request =null;
+		int status = 0;
+		try 
+		{
+			
+			Connection conn = Provider.getOracleConnection();
+			String sql = "insert into gradesheet values(?,?,?,?,?,?,?,?)";
+			PreparedStatement pst = conn.prepareStatement(sql);
+			HttpSession session = request.getSession();
+			System.out.println((String)session.getAttribute("name"));
+			System.out.println((String)session.getAttribute("regd"));
+			pst.setString(1, (String)session.getAttribute("name"));
+			pst.setString(2, (String)session.getAttribute("regd"));
+			pst.setString(3, c.getSubcode());
+			pst.setString(4, c.getSubname());
+			pst.setString(5, c.getCredit());
+			pst.setString(6, c.getGrade());
+			pst.setString(7, (String)session.getAttribute("sgpa"));
+			pst.setString(8, (String)session.getAttribute("sem"));
+			status = pst.executeUpdate();
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+			status = -1;
+		}
+		return status;
 	}
 	
 

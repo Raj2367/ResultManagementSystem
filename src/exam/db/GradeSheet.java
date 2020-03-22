@@ -2,6 +2,8 @@ package exam.db;
 
 public class GradeSheet 
 {
+	private String name;
+	private String sgpa;
 	private String regdno;
 	private String sem;
 	private String subcode;
@@ -22,6 +24,18 @@ public class GradeSheet
 	}
 	public String getSubcode() {
 		return subcode;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getSgpa() {
+		return sgpa;
+	}
+	public void setSgpa(String sgpa) {
+		this.sgpa = sgpa;
 	}
 	public void setSubcode(String subcode) {
 		this.subcode = subcode;
