@@ -8,7 +8,7 @@
 </head>
 <body>
 	<br><br>
-	<div align="center">Developed by Pruthwiraj</div>
+	<div align="center">Developed by <a href="https://pruthwirajnayak.netlify.app/" target="_blank"> Pruthwiraj Nayak</a></div>
 	<br><br>
 </body>
 </html>

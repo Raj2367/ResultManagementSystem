@@ -28,6 +28,8 @@ public class ShowResult3 extends HttpServlet {
 		
 		GradeSheet c = new GradeSheet();
 		
+		System.out.println(request);
+		
 		c.setRegdno(request.getParameter("regd"));
 		c.setSem(request.getParameter("sem"));
 		

@@ -38,17 +38,17 @@
                             <span><i class="fas fa-user-graduate"></i> </span>
                             <span class="hidden-sm hidden-xs">&nbsp;&nbsp; Student</span>
                         </a>
+                    </li>                    
+                    <li class="link">
+                        <a href="./addGrade.jsp">
+                            <span><i class="fas fa-chalkboard-teacher"></i> </span>
+                            <span class="hidden-sm hidden-xs">&nbsp;&nbsp; Add Grade</span>
+                        </a>
                     </li>
                     <li class="link active">
                         <a href="./addInstruction.jsp">
                             <span><i class="fas fa-chalkboard-teacher"></i> </span>
                             <span class="hidden-sm hidden-xs">&nbsp;&nbsp; Instruction</span>
-                        </a>
-                    </li>
-                    <li class="link">
-                        <a href="./addGrade.jsp">
-                            <span><i class="fas fa-chalkboard-teacher"></i> </span>
-                            <span class="hidden-sm hidden-xs">&nbsp;&nbsp; Add Garde</span>
                         </a>
                     </li>
                 </ul>

@@ -35,17 +35,17 @@
                             <span><i class="fas fa-user-graduate"></i> </span>
                             <span class="hidden-sm hidden-xs">&nbsp;&nbsp; Student</span>
                         </a>
+                    </li>                    
+                    <li class="link active">
+                        <a href="./addGrade.jsp">
+                            <span><i class="fas fa-chalkboard-teacher"></i> </span>
+                            <span class="hidden-sm hidden-xs">&nbsp;&nbsp; Add Grade</span>
+                        </a>
                     </li>
                     <li class="link">
                         <a href="./addInstruction.jsp">
                             <span><i class="fas fa-chalkboard-teacher"></i> </span>
                             <span class="hidden-sm hidden-xs">&nbsp;&nbsp; Instruction</span>
-                        </a>
-                    </li>
-                    <li class="link active">
-                        <a href="./addGrade.jsp">
-                            <span><i class="fas fa-chalkboard-teacher"></i> </span>
-                            <span class="hidden-sm hidden-xs">&nbsp;&nbsp; Add Garde</span>
                         </a>
                     </li>
                 </ul>
@@ -153,8 +153,11 @@
 							
                     	}
 					%>
+					<br><br><br>
 					<div>
-						<form action="exam.controller.ShowResult2" method="post">   
+						<form action="exam.controller.ShowResult2" method="post">  
+							Enter the Student's Regd. no : <input type="text" name="regd"><br><br>
+	                		Enter the Semester : <input type="text" name="sem"><br><br> 
 			                Enter the Subject Code: <input type="text" name="code"><br><br>
 			                Enter the Subject Name : <input type="text" name="sname"><br><br>
 			                Enter the Total Credit : <input type="text" name="credit"><br><br>
@@ -165,7 +168,7 @@
 					<%
 						if(request.getParameter("msg1") != null && request.getParameter("msg2")!=null)
 						{
-							out.println("<h1>result added</h1><br><br");
+							out.println("<h1>result added</h1><br><br>");
 						}
 					%>
                 </div>    

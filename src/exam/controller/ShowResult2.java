@@ -26,14 +26,16 @@ public class ShowResult2 extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html");
 		
-		GradeSheet c = new GradeSheet();
+		GradeSheet c = new GradeSheet();				
 		
+		c.setRegdno(request.getParameter("regd"));
+		c.setSem(request.getParameter("sem"));
 		c.setSubcode(request.getParameter("code"));
 		c.setSubname(request.getParameter("sname"));
 		c.setCredit(request.getParameter("credit"));
 		c.setGrade(request.getParameter("grade"));
 		
-		int status = 1;
+		int status = ExamDAO.insertResult(c);
 		if (status>0) 
 		{			
 			response.sendRedirect("addGrade.jsp?msg1=reslut is here && msg2=result also here");

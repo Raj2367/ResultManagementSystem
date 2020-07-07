@@ -277,7 +277,6 @@ public class ExamDAO {
 
 	public static int insertResult(GradeSheet c) 
 	{
-		HttpServletRequest request =null;
 		int status = 0;
 		try 
 		{
@@ -285,17 +284,15 @@ public class ExamDAO {
 			Connection conn = Provider.getOracleConnection();
 			String sql = "insert into gradesheet values(?,?,?,?,?,?,?,?)";
 			PreparedStatement pst = conn.prepareStatement(sql);
-			HttpSession session = request.getSession();
-			System.out.println((String)session.getAttribute("name"));
-			System.out.println((String)session.getAttribute("regd"));
-			pst.setString(1, (String)session.getAttribute("name"));
-			pst.setString(2, (String)session.getAttribute("regd"));
+			
+			pst.setString(1, c.getName());
+			pst.setString(2, c.getRegdno());
 			pst.setString(3, c.getSubcode());
 			pst.setString(4, c.getSubname());
 			pst.setString(5, c.getCredit());
 			pst.setString(6, c.getGrade());
-			pst.setString(7, (String)session.getAttribute("sgpa"));
-			pst.setString(8, (String)session.getAttribute("sem"));
+			pst.setString(7, c.getSgpa());
+			pst.setString(8, c.getSem());
 			status = pst.executeUpdate();
 		} 
 		catch (Exception e) 
